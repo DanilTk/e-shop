@@ -145,7 +145,7 @@ public class ProductServiceTest {
         productService.addProduct(product);
 
         //then
-        Mockito.verify(productRepository, times(1)).save(product);
+        Mockito.verify(productRepository, times(1)).saveToDB(product);
     }
 
     private List<Product> createProducts(Integer numberOfProducts, ProductCategory productCategory) {
@@ -169,14 +169,14 @@ public class ProductServiceTest {
 
         //given
         Product product = new Product("Chips", 5.0, BigDecimal.valueOf(44), MeasureName.KILOGRAM, ProductCategory.TEA);
-        Mockito.when(productRepository.delete(any(Product.class))).thenReturn(anyLong());
+        Mockito.when(productRepository.deleteFromDB(any(Product.class))).thenReturn(anyLong());
 
         //when
         Long idOfRemovedProduct = productService.removeProduct(product);
 
         //then
         assertNotNull(idOfRemovedProduct);
-        Mockito.verify(productRepository, times(1)).delete(any(Product.class));
+        Mockito.verify(productRepository, times(1)).deleteFromDB(any(Product.class));
 
     }
 
@@ -197,7 +197,7 @@ public class ProductServiceTest {
                 MeasureName.KILOGRAM,
                 ProductCategory.TEA);
 
-        Mockito.when(productRepository.update(any(Product.class))).thenReturn(product);
+        Mockito.when(productRepository.updateDB(any(Product.class))).thenReturn(product);
 
         //when
         Product result = productService.updateProduct(product);
