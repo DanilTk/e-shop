@@ -1,6 +1,11 @@
 Client:
     - add id creation method
 
+ProductRepository:
+    - Return types of the class?
+    - Class is needed for DataBase operations to confirm?
+
 
 Other:
     - change of parameters order - does it affect the end code?
+    - Boolean vs. boolean
