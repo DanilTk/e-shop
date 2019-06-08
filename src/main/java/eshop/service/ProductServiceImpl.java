@@ -1,12 +1,11 @@
 package eshop.service;
 
 import eshop.model.Product;
-import eshop.model.ProductCategory;
+import eshop.model.enums.ProductCategory;
 import eshop.repository.ProductRepository;
 import eshop.service.exceptions.ProductException;
-import eshop.service.exceptions.ProductServiceException;
 
-import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -29,35 +28,32 @@ public class ProductServiceImpl implements ProductService {
             throw new ProductException("Product has been incorrectly initiated or absent");
         }
 
-        if (product.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
+        if (ProductValidator.validateProductPriceAmount(product)) {
             throw new ProductException("Product has price 0 or negative");
         }
-        return productRepository.save(product);
+        return productRepository.addToDB(product);
     }
 
     @Override
     public Product updateProduct(Product product) throws ProductException {
 
-        if (ProductValidator.validateProduct(product)) {
-            return productRepository.update(product);
+        if (!ProductValidator.validateProduct(product)) {
+            throw new ProductException("Product fields are incomplete");
         }
-        throw new ProductException("Project fields are incomplete");
+
+        if (ProductValidator.validateProductPriceAmount(product)) {
+            throw new ProductException("Product has price 0 or negative");
+        }
+        return productRepository.updateDB(product);
     }
 
     @Override
-    public Long removeProduct(Product product) throws ProductServiceException {
+    public Long removeProduct(Product product) throws ProductException {
+
         if (product == null) {
-            throw new ProductServiceException("Cannot remove null product");
+            throw new ProductException("Cannot remove null product");
         }
-        return productRepository.delete(product);
-    }
-
-    @Override
-    public List<Product> filterByProductCategory(List<Product> products, ProductCategory productCategory) {
-
-        return products.stream()
-                .filter(product -> product.getProductCategory().equals(productCategory))
-                .collect(toList());
+        return productRepository.removeFromDB(product);
     }
 
     @Override
@@ -71,18 +67,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findTopNumberOfProductsByCategory(List<Product> products, Integer numberOfElements, ProductCategory productCategory) {
 
-        products.stream()
-                .sorted((product1, product2) -> product1.getPrice().compareTo(product2.getPrice()))
+        return products.stream()
+                .sorted(Comparator.comparing(Product::getPrice))
                 .filter(product -> product.getProductCategory().equals(productCategory))
                 .limit(numberOfElements)
                 .collect(toList());
-        return null;
     }
 
     @Override
     public Map<ProductCategory, List<Product>> groupByProductCategory(List<Product> products) {
 
         return products.stream()
-                .collect(Collectors.groupingBy(p -> p.getProductCategory()));
+                .collect(Collectors.groupingBy(Product::getProductCategory));
     }
 }
