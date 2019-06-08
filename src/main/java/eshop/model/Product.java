@@ -20,20 +20,20 @@ public class Product {
 
     private Long id;
     private String name;
-    private Double quantity;
     private BigDecimal price;
+    private Double quantity;
     private MeasureName measureName;
     private ProductCategory productCategory;
 
     public Product(String name,
-                   Double quantity,
                    BigDecimal price,
+                   Double quantity,
                    MeasureName measureName,
                    ProductCategory productCategory) {
 
         this.name = name;
-        this.quantity = quantity;
         this.price = price;
+        this.quantity = quantity;
         this.measureName = measureName;
         this.productCategory = productCategory;
     }
@@ -54,20 +54,20 @@ public class Product {
         this.name = name;
     }
 
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
     }
 
     public MeasureName getMeasureName() {

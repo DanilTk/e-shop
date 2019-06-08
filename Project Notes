@@ -1,0 +1,6 @@
+Client:
+    - add id creation method
+
+
+Other:
+    - change of parameters order - does it affect the end code?
