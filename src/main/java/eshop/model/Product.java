@@ -2,6 +2,20 @@ package eshop.model;
 
 import java.math.BigDecimal;
 
+enum MeasureName {
+
+    KILOGRAM,
+    GRAMM,
+    PIECE
+}
+
+enum ProductCategory {
+
+    TEA,
+    COFFEE,
+    ELECTRONICS
+}
+
 public class Product {
 
     private Long id;
