@@ -11,53 +11,34 @@ public class ProductValidator {
             return false;
         }
 
-        if (!validateProductName(product)
-                || !validateProductQuantity(product)
-                || !validateProductPrice(product)
-                || !validateProductMeasureName(product)
-                || !validateProductCategory(product)) {
-            return false;
-        }
-        return true;
+        return validateProductName(product)
+                && validateProductQuantity(product)
+                && validateProductPrice(product)
+                && validateProductMeasureName(product)
+                && validateProductCategory(product);
     }
 
-
     private static boolean validateProductName(Product product) {
-        if (product.getName() == null) {
-            return false;
-        }
-        return true;
+        return product.getName() != null;
     }
 
     private static boolean validateProductMeasureName(Product product) {
 
-        if (product.getMeasureName() == null) {
-            return false;
-        }
-        return true;
+        return product.getMeasureName() != null;
     }
 
     private static boolean validateProductPrice(Product product) {
 
-        if (product.getPrice() == null) {
-            return false;
-        }
-        return true;
+        return product.getPrice() != null;
     }
 
     private static boolean validateProductCategory(Product product) {
 
-        if (product.getProductCategory() == null) {
-            return false;
-        }
-        return true;
+        return product.getProductCategory() != null;
     }
 
     private static boolean validateProductQuantity(Product product) {
 
-        if (product.getQuantity() == null) {
-            return false;
-        }
-        return true;
+        return product.getQuantity() != null;
     }
 }

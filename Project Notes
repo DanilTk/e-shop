@@ -9,3 +9,11 @@ ProductRepository:
 Other:
     - change of parameters order - does it affect the end code?
     - Boolean vs. boolean
+
+
+
+Interesting way to write ifs - why there are no {}?:
+
+   if (validateProductName(product)) if (validateProductQuantity(product)) if (validateProductPrice(product))
+            if (validateProductMeasureName(product)) if (validateProductCategory(product)) return true;
+        return false;
