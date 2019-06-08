@@ -2,13 +2,20 @@ Client:
     - add id creation method
 
 ProductRepository:
-    - Return types of the class?
-    - Class is needed for DataBase operations to confirm?
-
+    - Revise return types of classes
+    - Class is needed for DataBase operations - please confirm?
 
 Other:
     - change of parameters order - does it affect the end code?
     - Boolean vs. boolean
+    - Enums cannot be used as parameters in methods if aren't declared separately as classes outside of the class
+
+The below methods probably should be moved to another class >> BasketServiceImpl?
+
+        filterProducts
+        findTopNumberOfProductsByCategory
+        groupByProductCategory
+
 
 
 
