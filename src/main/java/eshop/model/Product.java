@@ -1,20 +1,9 @@
 package eshop.model;
 
+import eshop.model.enums.MeasureName;
+import eshop.model.enums.ProductCategory;
+
 import java.math.BigDecimal;
-
-enum MeasureName {
-
-    KILOGRAM,
-    GRAMM,
-    PIECE
-}
-
-enum ProductCategory {
-
-    TEA,
-    COFFEE,
-    ELECTRONICS
-}
 
 public class Product {
 
