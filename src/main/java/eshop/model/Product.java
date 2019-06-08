@@ -11,7 +11,6 @@ public class Product {
     private MeasureName measureName;
     private ProductCategory productCategory;
 
-
     public Product(String name,
                    Double quantity,
                    BigDecimal price,

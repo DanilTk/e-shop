@@ -11,9 +11,7 @@ import java.util.Map;
 public interface BasketService {
 
     Basket addProduct(Product product);
-
     BigDecimal calculateClientBasket(Basket basket);
-
     Map<Product, List<Client>> groupClientShoppingByProduct(List<Basket> baskets);
 
 }

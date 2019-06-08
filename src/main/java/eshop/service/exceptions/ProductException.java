@@ -1,4 +1,4 @@
-package eshop.service;
+package eshop.service.exceptions;
 
 public class ProductException extends Exception {
 

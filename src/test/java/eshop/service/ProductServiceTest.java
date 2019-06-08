@@ -4,6 +4,8 @@ import eshop.model.MeasureName;
 import eshop.model.Product;
 import eshop.model.ProductCategory;
 import eshop.repository.ProductRepositoryImpl;
+import eshop.service.exceptions.ProductException;
+import eshop.service.exceptions.ProductServiceException;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;

@@ -1,6 +1,7 @@
 package eshop.service;
 
 import eshop.model.Product;
+import eshop.service.exceptions.ProductException;
 
 public class ProductValidator {
 
@@ -17,7 +18,6 @@ public class ProductValidator {
                 || !validateProductCategory(product)) {
             return false;
         }
-
         return true;
     }
 
@@ -30,6 +30,7 @@ public class ProductValidator {
     }
 
     private static boolean validateProductMeasureName(Product product) {
+
         if (product.getMeasureName() == null) {
             return false;
         }
@@ -37,6 +38,7 @@ public class ProductValidator {
     }
 
     private static boolean validateProductPrice(Product product) {
+
         if (product.getPrice() == null) {
             return false;
         }
@@ -44,6 +46,7 @@ public class ProductValidator {
     }
 
     private static boolean validateProductCategory(Product product) {
+
         if (product.getProductCategory() == null) {
             return false;
         }
@@ -51,10 +54,10 @@ public class ProductValidator {
     }
 
     private static boolean validateProductQuantity(Product product) {
+
         if (product.getQuantity() == null) {
             return false;
         }
         return true;
     }
-
 }

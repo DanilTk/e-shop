@@ -4,6 +4,5 @@ public enum ProductCategory {
 
     TEA,
     COFFEE,
-    ELECTRONICS;
-
+    ELECTRONICS
 }

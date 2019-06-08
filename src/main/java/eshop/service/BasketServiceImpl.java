@@ -27,13 +27,11 @@ public class BasketServiceImpl implements BasketService {
     @Override
     public BigDecimal calculateClientBasket(Basket basket) {
         BigDecimal basketPrice = BigDecimal.ZERO;
-
         List<Product> clientProducts = basket.getProducts();
 
         BigDecimal total = clientProducts.stream()
                 .map(Product::getPrice)
                 .reduce(basketPrice, BigDecimal::add);
-
         return total;
     }
 
@@ -45,9 +43,6 @@ public class BasketServiceImpl implements BasketService {
                 .flatMap(List::stream)
                 .distinct()
                 .collect(toList());
-
         return null;
     }
-
-
 }
