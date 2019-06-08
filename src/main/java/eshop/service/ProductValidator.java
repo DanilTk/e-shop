@@ -3,6 +3,8 @@ package eshop.service;
 import eshop.model.Product;
 import eshop.service.exceptions.ProductException;
 
+import java.math.BigDecimal;
+
 public class ProductValidator {
 
     public static boolean validateProduct(Product product) throws ProductException {
@@ -16,6 +18,10 @@ public class ProductValidator {
                 && validateProductPrice(product)
                 && validateProductMeasureName(product)
                 && validateProductCategory(product);
+    }
+
+    public static boolean validateProductPriceAmount(Product product) {
+        return product.getPrice().compareTo(BigDecimal.ZERO) <= 0;
     }
 
     private static boolean validateProductName(Product product) {
