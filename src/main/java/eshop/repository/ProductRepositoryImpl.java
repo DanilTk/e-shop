@@ -4,19 +4,19 @@ import eshop.model.Product;
 
 public class ProductRepositoryImpl implements ProductRepository {
     @Override
-    public Product save(Product product) {
+    public Product addToDB(Product product) {
         return product;
     }
 
     @Override
-    public Product update(Product product) {
+    public Product updateDB(Product product) {
         return product;
     }
 
     //todo: @Robert to confirm if long required to check number of products before deletion? Why Long and not boolean?
 
     @Override
-    public Long delete(Product product) {
+    public Long removeFromDB(Product product) {
         return null;
     }
 }
