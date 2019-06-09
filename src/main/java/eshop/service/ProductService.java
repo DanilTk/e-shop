@@ -23,5 +23,4 @@ public interface ProductService {
                                                     ProductCategory productCategory);
 
     Map<ProductCategory, List<Product>> groupByProductCategory(List<Product> products);
-
 }
