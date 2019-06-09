@@ -14,7 +14,6 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     //todo: @Robert to confirm if long required to check number of products before deletion? Why Long and not boolean?
-
     @Override
     public Long removeFromDB(Product product) {
         return null;
