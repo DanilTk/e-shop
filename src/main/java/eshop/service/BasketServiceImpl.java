@@ -5,8 +5,7 @@ import eshop.model.Client;
 import eshop.model.Product;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -20,29 +19,45 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public Basket addProduct(Product product) {
+
         basket.getProducts().add(product);
         return basket;
     }
 
     @Override
     public BigDecimal calculateClientBasket(Basket basket) {
+
         BigDecimal basketPrice = BigDecimal.ZERO;
         List<Product> clientProducts = basket.getProducts();
 
-        BigDecimal total = clientProducts.stream()
+        return clientProducts.stream()
                 .map(Product::getPrice)
                 .reduce(basketPrice, BigDecimal::add);
-        return total;
     }
 
     @Override
-    public Map<Product, List<Client>> groupClientShoppingByProduct(List<Basket> baskets) {
+    public Map<Product, Set<Client>> groupClientShoppingByProduct(List<Basket> baskets) {
+
+        Map<Product, Set<Client>> clientsGroupedByProducts = new HashMap<>();
+
+        //TODO:@Robert to advise why the second part doesn't use stream. Why we have .get(product) at comment in line 56
 
         baskets.stream()
-                .map(Basket::getProducts)
-                .flatMap(List::stream)
+                .map(basket -> basket.getProducts())
+                .flatMap(List<Product>::stream)
                 .distinct()
-                .collect(toList());
-        return null;
+                .collect(toList())
+                .forEach(product -> clientsGroupedByProducts.put(product, new HashSet<>()));
+
+        baskets.forEach(basket -> {
+            basket.getProducts()
+                    .forEach(product -> {
+                        if (clientsGroupedByProducts.containsKey(product)) {
+                            clientsGroupedByProducts.get(product).add(basket.getClient());
+                        }
+                    });
+        });
+
+        return clientsGroupedByProducts;
     }
 }
