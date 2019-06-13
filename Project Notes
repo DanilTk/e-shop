@@ -1,23 +1,15 @@
-Client:
-    - add id creation method
+Points/Questions:
 
-ProductRepository:
-    - Revise return types of classes
-    - Class is needed for DataBase operations - please confirm?
+- Product -> add id assigning method
+- Client -> add id assigning method
+- Robert to confirm if ProductRepository class is the current "switcher method" for operations on Database?
+- Robert to confirm why removeFromDB has a return type Long?
+- Boolean vs. boolean
+- Enums cannot be used as parameters if not stored in a separate class
+- Do we need exceptions in methods of class ProductValidator?
+- Robert to advise on tests names
 
-Other:
-    - change of parameters order - does it affect the end code?
-    - Boolean vs. boolean
-    - Enums cannot be used as parameters in methods if aren't declared separately as classes outside of the class
-
-The below methods probably should be moved to another class >> BasketServiceImpl?
-
-        filterProducts
-        findTopNumberOfProductsByCategory
-        groupByProductCategory
-
-
-
+Notes:
 
 Interesting way to write ifs - why there are no {}?:
 
