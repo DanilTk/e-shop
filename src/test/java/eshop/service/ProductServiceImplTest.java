@@ -173,7 +173,6 @@ public class ProductServiceImplTest {
         Map<ProductCategory, List<Product>> groupedProducts = productService.groupByProductCategory(products);
 
         //then
-        //assertThat(groupedProducts, hasSize(2));
         Assert.assertEquals(2, groupedProducts.size());
     }
 }
