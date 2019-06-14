@@ -64,10 +64,8 @@ public class ProductServiceImplTest {
         return product -> product.getPrice().compareTo(price) > 0;
     }
 
-    //TODO: Create test with this predicate
-
     private static Predicate<Product> productCategoryPredicate(ProductCategory productCategory) {
-        return product -> product.getProductCategory().compareTo(productCategory) > 0;
+        return product -> product.getProductCategory().equals(productCategory);
     }
 
     @Test
@@ -146,6 +144,23 @@ public class ProductServiceImplTest {
     }
 
     @Test
+    public void filterProducts_withProductCategoryPredicate() {
+
+        //given
+        List<Product> products = createProductList(4, BigDecimal.valueOf(100), 10d, MeasureName.PIECE, ProductCategory.ELECTRONICS);
+        products.addAll(createProductList(8, BigDecimal.valueOf(30), 50d, MeasureName.GRAMM, ProductCategory.TEA));
+        Predicate<Product> categoryPredicate = productCategoryPredicate(ProductCategory.ELECTRONICS);
+
+        //when
+        List<Product> filteredProducts = productService.filterProducts(products, categoryPredicate);
+
+        //then
+        assertThat(filteredProducts, hasSize(4));
+        assertThat(filteredProducts, everyItem(hasProperty("productCategory", equalTo(ProductCategory.ELECTRONICS))));
+
+    }
+
+    @Test
     //TODO: Test each map's list size and content
     //TODO: Robert to advise on assertThat implementation below - not working correctly
     public void groupByProductCategory_shouldReturnMapOfProductCategoryAndListOfProducts() {
@@ -158,7 +173,7 @@ public class ProductServiceImplTest {
         Map<ProductCategory, List<Product>> groupedProducts = productService.groupByProductCategory(products);
 
         //then
-        //assertThat(groupedProducts, arrayWithSize(2));
+        //assertThat(groupedProducts, hasSize(2));
         Assert.assertEquals(2, groupedProducts.size());
     }
 }
