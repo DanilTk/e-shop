@@ -4,25 +4,23 @@ import eshop.model.enums.MeasureName;
 import eshop.model.enums.ProductCategory;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Product {
 
     private Long id;
     private String name;
     private BigDecimal price;
-    private Double quantity;
     private MeasureName measureName;
     private ProductCategory productCategory;
 
     public Product(String name,
                    BigDecimal price,
-                   Double quantity,
                    MeasureName measureName,
                    ProductCategory productCategory) {
 
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
         this.measureName = measureName;
         this.productCategory = productCategory;
     }
@@ -51,14 +49,6 @@ public class Product {
         this.price = price;
     }
 
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
     public MeasureName getMeasureName() {
         return measureName;
     }
@@ -73,5 +63,22 @@ public class Product {
 
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) &&
+                name.equals(product.name) &&
+                price.equals(product.price) &&
+                measureName == product.measureName &&
+                productCategory == product.productCategory;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, measureName, productCategory);
     }
 }

@@ -5,8 +5,11 @@ import eshop.model.enums.MeasureName;
 import eshop.model.enums.ProductCategory;
 import eshop.repository.ProductRepositoryImpl;
 import eshop.service.exceptions.ProductException;
+import org.hamcrest.collection.IsMapContaining;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -29,6 +32,9 @@ import static org.mockito.Matchers.anyLong;
 @RunWith(MockitoJUnitRunner.class)
 public class ProductServiceImplTest {
 
+    @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
+
     @Mock
     private ProductRepositoryImpl productRepository;
 
@@ -39,7 +45,6 @@ public class ProductServiceImplTest {
 
         return new Product("Product",
                 BigDecimal.valueOf(100),
-                2d,
                 MeasureName.PIECE,
                 ProductCategory.ELECTRONICS);
     }
@@ -51,7 +56,6 @@ public class ProductServiceImplTest {
         for (int i = 0; i < numberOfProducts; i++) {
             Product product = new Product("Product_" + i,
                     price,
-                    quantity,
                     measureName,
                     productCategory);
 
@@ -83,6 +87,28 @@ public class ProductServiceImplTest {
     }
 
     @Test
+    public void addProduct_whenProductIsNull_shouldThrowException() throws ProductException {
+
+        //then
+        exceptionRule.expect(ProductException.class);
+        productService.addProduct(null);
+        exceptionRule.expectMessage("Product has been incorrectly initiated or absent");
+    }
+
+    @Test
+    public void addProduct_whenProductWhenPriceBelowOrZero_shouldThrowException() throws ProductException {
+
+        //given
+        Product product = createProduct();
+        product.setPrice(BigDecimal.valueOf(-5));
+
+        //then
+        exceptionRule.expect(ProductException.class);
+        exceptionRule.expectMessage("Product has price 0 or negative");
+        productService.addProduct(product);
+    }
+
+    @Test
     public void updateProduct_whenProductIsCorrect_shouldReturnUpdatedProduct() throws ProductException {
 
         //given
@@ -97,6 +123,32 @@ public class ProductServiceImplTest {
     }
 
     @Test
+    public void updateProduct_whenProductIsIncorrectlyUpdated_shouldThrowException() throws ProductException {
+
+        //given
+        Product product = createProduct();
+        product.setName(null);
+
+        //then
+        exceptionRule.expect(ProductException.class);
+        exceptionRule.expectMessage("Product fields are incomplete");
+        productService.updateProduct(product);
+    }
+
+    @Test
+    public void updateProduct_whenProductWhenPriceBelowOrZero_shouldThrowException() throws ProductException {
+
+        //given
+        Product product = createProduct();
+        product.setPrice(BigDecimal.valueOf(-5));
+
+        //then
+        exceptionRule.expect(ProductException.class);
+        exceptionRule.expectMessage("Product has price 0 or negative");
+        productService.updateProduct(product);
+    }
+
+    @Test
     public void removeProduct_whenProductIsNotNull_shouldReturnId() throws ProductException {
 
         //given
@@ -108,6 +160,14 @@ public class ProductServiceImplTest {
 
         //then
         Assert.assertThat(removedProduct, instanceOf(Long.class));
+    }
+
+    @Test(expected = ProductException.class)
+    public void removeProduct_whenProductIsNull_shouldThrowException() throws ProductException {
+
+        //when
+        productService.removeProduct(null);
+        exceptionRule.expectMessage("Cannot remove null product");
     }
 
     @Test
@@ -157,12 +217,9 @@ public class ProductServiceImplTest {
         //then
         assertThat(filteredProducts, hasSize(4));
         assertThat(filteredProducts, everyItem(hasProperty("productCategory", equalTo(ProductCategory.ELECTRONICS))));
-
     }
 
     @Test
-    //TODO: Test each map's list size and content
-    //TODO: Robert to advise on assertThat implementation below - not working correctly
     public void groupByProductCategory_shouldReturnMapOfProductCategoryAndListOfProducts() {
 
         //given
@@ -173,6 +230,10 @@ public class ProductServiceImplTest {
         Map<ProductCategory, List<Product>> groupedProducts = productService.groupByProductCategory(products);
 
         //then
-        Assert.assertEquals(2, groupedProducts.size());
+        assertThat(groupedProducts.size(), is(2));
+        assertThat(groupedProducts, IsMapContaining.hasKey(ProductCategory.TEA));
+        assertThat(groupedProducts, IsMapContaining.hasKey(ProductCategory.ELECTRONICS));
+        assertThat(groupedProducts.values().stream()
+                .flatMap(List<Product>::stream).count(), is(12l));
     }
 }

@@ -25,6 +25,13 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
+    public Basket removeProduct(Product product) {
+
+        basket.getProducts().remove(product);
+        return basket;
+    }
+
+    @Override
     public BigDecimal calculateClientBasket(Basket basket) {
 
         BigDecimal basketPrice = BigDecimal.ZERO;
@@ -38,11 +45,11 @@ public class BasketServiceImpl implements BasketService {
     @Override
     public Map<Product, Set<Client>> groupClientShoppingByProduct(List<Basket> baskets) {
 
-        Map<Product, Set<Client>> clientsGroupedByProducts = new HashMap<>();
-
         //TODO:@Robert to advise why the second part doesn't use stream. Why we have .get(product) at comment in line 56
 
-        baskets.stream()
+        Map<Product, Set<Client>> clientsGroupedByProducts = new HashMap<>();
+
+       baskets.stream()
                 .map(basket -> basket.getProducts())
                 .flatMap(List<Product>::stream)
                 .distinct()
@@ -57,7 +64,6 @@ public class BasketServiceImpl implements BasketService {
                         }
                     });
         });
-
         return clientsGroupedByProducts;
     }
 }

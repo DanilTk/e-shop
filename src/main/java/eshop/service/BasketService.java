@@ -13,8 +13,9 @@ public interface BasketService {
 
     Basket addProduct(Product product);
 
+    Basket removeProduct(Product product);
+
     BigDecimal calculateClientBasket(Basket basket);
 
     Map<Product, Set<Client>> groupClientShoppingByProduct(List<Basket> baskets);
-
 }
