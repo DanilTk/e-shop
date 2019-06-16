@@ -20,7 +20,7 @@ public class ProductValidator {
                 && validateProductCategory(product);
     }
 
-    public static boolean validateProductPriceAmount(Product product) {
+    public static boolean validateProductPriceAmount(Product product) throws ProductException {
         return product.getPrice().compareTo(BigDecimal.ZERO) <= 0;
     }
 

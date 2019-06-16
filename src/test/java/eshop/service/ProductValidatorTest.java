@@ -22,7 +22,6 @@ public class ProductValidatorTest {
                 ProductCategory.ELECTRONICS);
     }
 
-    //TODO: @Robert to advise why this needs to throw exception? Shall we capture it in order not to throw? How to ensure exception is thrown in method tests?
     @Test
     public void validateProduct_whenAllParametersGivenAndNotNull_shouldReturnTrue() throws ProductException {
 
@@ -38,7 +37,7 @@ public class ProductValidatorTest {
     }
 
     @Test
-    public void validateProductPriceAmount_whenPriceBelowOrZero_shouldReturnTrue() {
+    public void validateProductPriceAmount_whenPriceBelowOrZero_shouldReturnTrue() throws ProductException {
 
         //given
         Product product = createProduct();
