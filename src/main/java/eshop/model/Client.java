@@ -19,6 +19,8 @@ public class Client {
         this.creationTimestamp = creationTimestamp;
     }
 
+    POI
+
     public Long getId() {
         return id;
     }
