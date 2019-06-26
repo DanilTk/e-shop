@@ -49,7 +49,7 @@ public class BasketServiceImpl implements BasketService {
 
         Map<Product, Set<Client>> clientsGroupedByProducts = new HashMap<>();
 
-       baskets.stream()
+        baskets.stream()
                 .map(basket -> basket.getProducts())
                 .flatMap(List<Product>::stream)
                 .distinct()

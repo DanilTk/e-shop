@@ -9,6 +9,7 @@ Points/Questions:
 - Do we need exceptions in methods of class ProductValidator?
 - Robert to advise how to make dependent enums (e.g. excel-like dependent dropdowns)
 - To review method calculateClientBasket with regards to quantity / price aspect >> disuss with team how shall be calculated
+- Add Client creation/deletion timestamps
 
 Notes:
 

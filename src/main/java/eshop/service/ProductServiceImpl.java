@@ -67,7 +67,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findTopNumberOfProductsByCategory(List<Product> products, Integer numberOfElements, ProductCategory productCategory) {
 
-//TODO: Robert to advise if shall add custom exception to handle OutOfBound Exception?
+        if (numberOfElements > products.size()) numberOfElements = products.size();
 
         return products.stream()
                 .sorted(Comparator.comparing(Product::getPrice))

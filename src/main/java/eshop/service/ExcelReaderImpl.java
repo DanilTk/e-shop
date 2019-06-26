@@ -5,6 +5,7 @@ import eshop.model.Client;
 import java.util.List;
 
 public class ExcelReaderImpl implements ExcelReader {
+
     @Override
     public List<Client> retrieveClients() {
         return null;
