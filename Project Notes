@@ -10,6 +10,8 @@ Points/Questions:
 - Robert to advise how to make dependent enums (e.g. excel-like dependent dropdowns)
 - To review method calculateClientBasket with regards to quantity / price aspect >> disuss with team how shall be calculated
 - Add Client creation/deletion timestamps
+- Add export from excel for products also. Use generics
+- Consider where clients / products excel export is to be used and consider how to
 
 Notes:
 
