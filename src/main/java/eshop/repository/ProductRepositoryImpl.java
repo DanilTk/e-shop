@@ -2,6 +2,8 @@ package eshop.repository;
 
 import eshop.model.Product;
 
+import java.util.List;
+
 public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Product addToDB(Product product) {
@@ -13,9 +15,12 @@ public class ProductRepositoryImpl implements ProductRepository {
         return product;
     }
 
-    //todo: @Robert to confirm if long required to check number of products before deletion? Why Long and not boolean?
     @Override
     public Long removeFromDB(Product product) {
+        return null;
+    }
+
+    public List<Product> retrieveFromDB() {
         return null;
     }
 }

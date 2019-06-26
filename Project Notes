@@ -7,7 +7,8 @@ Points/Questions:
 - Boolean vs. boolean
 - Enums cannot be used as parameters if not stored in a separate class
 - Do we need exceptions in methods of class ProductValidator?
-- Robert to advise on tests names
+- Robert to advise how to make dependent enums (e.g. excel-like dependent dropdowns)
+- To review method calculateClientBasket with regards to quantity / price aspect >> disuss with team how shall be calculated
 
 Notes:
 

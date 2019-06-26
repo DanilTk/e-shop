@@ -14,7 +14,6 @@ public class ProductValidator {
         }
 
         return validateProductName(product)
-                && validateProductQuantity(product)
                 && validateProductPrice(product)
                 && validateProductMeasureName(product)
                 && validateProductCategory(product);
@@ -41,10 +40,5 @@ public class ProductValidator {
     private static boolean validateProductCategory(Product product) {
 
         return product.getProductCategory() != null;
-    }
-
-    private static boolean validateProductQuantity(Product product) {
-
-        return product.getQuantity() != null;
     }
 }

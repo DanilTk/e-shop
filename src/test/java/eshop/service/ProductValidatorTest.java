@@ -17,7 +17,6 @@ public class ProductValidatorTest {
 
         return new Product("Product",
                 BigDecimal.valueOf(100),
-                2d,
                 MeasureName.PIECE,
                 ProductCategory.ELECTRONICS);
     }
