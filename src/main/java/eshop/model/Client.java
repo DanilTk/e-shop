@@ -23,6 +23,7 @@ public class Client {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.creationTimestamp = LocalDateTime.now();
     }
 
     public Long getId() {

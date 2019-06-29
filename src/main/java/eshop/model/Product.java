@@ -14,6 +14,14 @@ public class Product {
     private MeasureName measureName;
     private ProductCategory productCategory;
 
+    public Product(Long id, String name, BigDecimal price, MeasureName measureName, ProductCategory productCategory) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.measureName = measureName;
+        this.productCategory = productCategory;
+    }
+
     public Product(String name,
                    BigDecimal price,
                    MeasureName measureName,
