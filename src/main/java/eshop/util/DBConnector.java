@@ -15,8 +15,6 @@ public class DBConnector {
         String user = properties.getProperty("user");
         String password = properties.getProperty("password");
 
-        System.out.println("jdbc:mysql://" + host + ":" + port + "/" + db_name);
-
         return DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db_name, user, password);
     }
 }

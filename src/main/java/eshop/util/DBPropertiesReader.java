@@ -13,13 +13,10 @@ public class DBPropertiesReader {
         Properties prop = new Properties();
 
         try (InputStream input = DBPropertiesReader.class.getClassLoader().getResourceAsStream("db.properties")) {
-
             if (input == null) {
                 throw new NullPointerException();
             }
-
             prop.load(input);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
