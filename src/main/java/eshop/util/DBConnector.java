@@ -14,7 +14,10 @@ public class DBConnector {
         String port = properties.getProperty("port");
         String user = properties.getProperty("user");
         String password = properties.getProperty("password");
+        String ssl = "?useSSL=false";
 
-        return DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db_name, user, password);
+        System.out.println("Connecting to address: jdbc:mysql://" + host + ":" + port + "/" + db_name + ssl);
+
+        return DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db_name + ssl, user, password);
     }
 }

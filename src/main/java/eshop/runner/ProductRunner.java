@@ -10,7 +10,7 @@ public class ProductRunner {
     public static void main(String[] args) throws SQLException {
 
         if(DBConnector.setDBConnection(DBPropertiesReader.loadDBProperties())==null){
-            System.out.println("Error");
+            System.out.println("Connection failed");
         }
     }
 }
