@@ -1,26 +1,20 @@
 package eshop.model;
 
+import lombok.EqualsAndHashCode;
+
 import java.time.LocalDateTime;
 
+@EqualsAndHashCode
 public class Client {
 
+    //TODO: @Robert to advise if need final for any of the below fields
     private Long id;
     private String firstName;
     private String lastName;
     private LocalDateTime creationTimestamp;
     private LocalDateTime deletionTimestamp;
 
-    public Client(String firstName,
-                  String lastName,
-                  LocalDateTime creationTimestamp) {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.creationTimestamp = creationTimestamp;
-    }
-
-    public Client(Long id, String firstName, String lastName) {
-        this.id = id;
+    public Client(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.creationTimestamp = LocalDateTime.now();

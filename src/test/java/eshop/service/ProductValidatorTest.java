@@ -4,6 +4,7 @@ import eshop.model.Product;
 import eshop.model.enums.MeasureName;
 import eshop.model.enums.ProductCategory;
 import eshop.service.exceptions.ProductException;
+import eshop.service.validation.ProductValidator;
 import org.junit.Test;
 
 import java.math.BigDecimal;

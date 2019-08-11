@@ -2,13 +2,14 @@ package eshop.service;
 
 import eshop.model.Client;
 import eshop.model.Product;
+import eshop.util.ExcelReader;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasSize;
 
 public class ExcelReaderTest {
 

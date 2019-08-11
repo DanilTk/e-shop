@@ -1,4 +1,4 @@
-package eshop.service;
+package eshop.util;
 
 import eshop.model.Client;
 import eshop.model.Product;
@@ -59,7 +59,7 @@ public class ExcelReader {
         MeasureName measureName = MeasureName.valueOf(convertCellToString(row.getCell(3)).toUpperCase());
         ProductCategory productCategory = ProductCategory.valueOf(convertCellToString(row.getCell(4)).toUpperCase());
 
-        return new Product(id, name, price, measureName, productCategory);
+        return new Product(name, price, measureName, productCategory);
     }
 
     private static Client extractClientFromExcelRow(Row row) {
@@ -68,7 +68,7 @@ public class ExcelReader {
         String name = convertCellToString(row.getCell(1));
         String surname = convertCellToString(row.getCell(1));
 
-        return new Client(id, name, surname);
+        return new Client(name, surname);
     }
 
     private static Long convertCellToLong(Cell cell) {

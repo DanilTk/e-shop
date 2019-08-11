@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +35,7 @@ public class BasketServiceImplTest {
         List<Basket> baskets = new ArrayList<>();
 
         for (int i = 0; i < numberOfBaskets; i++) {
-            Client client = new Client("Client" + i, "Testing" + i, null);
+            Client client = new Client("Testing" + i, null);
             Basket basket = new Basket(client);
             BasketServiceImpl basketService = new BasketServiceImpl(basket);
 
@@ -60,7 +59,7 @@ public class BasketServiceImplTest {
 
         //given
         Product product = createProduct();
-        Client client = new Client("Client", "Testing", LocalDateTime.now());
+        Client client = new Client("Client", "Testing");
         Basket basket = new Basket(client);
         BasketServiceImpl basketService = new BasketServiceImpl(basket);
 
@@ -77,7 +76,7 @@ public class BasketServiceImplTest {
 
         //given
         Product product = createProduct();
-        Client client = new Client("Client", "Testing", LocalDateTime.now());
+        Client client = new Client("Client", "Testing");
         Basket basket = new Basket(client);
         BasketServiceImpl basketService = new BasketServiceImpl(basket);
 
@@ -93,7 +92,7 @@ public class BasketServiceImplTest {
     public void calculateClientBasket_whenMultipleProducts_shouldReturnSumOfProductsInBasket() {
 
         //given
-        Client client = new Client("Client", "Testing", LocalDateTime.now());
+        Client client = new Client("Client", "Testing");
         Basket basket = new Basket(client);
         BasketServiceImpl basketService = new BasketServiceImpl(basket);
 

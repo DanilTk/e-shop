@@ -1,4 +1,4 @@
-package eshop.service;
+package eshop.service.validation;
 
 import eshop.model.Product;
 import eshop.service.exceptions.ProductException;

@@ -10,7 +10,6 @@ public class DBPropertiesReader {
 
     private static final Logger LOGGER = Logger.getLogger("eshop.util.jdbc.DBPropertiesReader");
     private static final String DB_PROPERTIES_FILE_NAME = "db.properties";
-    // private Properties properties = new Properties();
 
     public static Properties loadDBProperties() {
         Properties prop = new Properties();

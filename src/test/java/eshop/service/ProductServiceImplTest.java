@@ -3,7 +3,6 @@ package eshop.service;
 import eshop.model.Product;
 import eshop.model.enums.MeasureName;
 import eshop.model.enums.ProductCategory;
-import eshop.repository.ProductRepositoryImpl;
 import eshop.service.exceptions.ProductException;
 import org.hamcrest.collection.IsMapContaining;
 import org.junit.Assert;
@@ -36,7 +35,7 @@ public class ProductServiceImplTest {
     public ExpectedException exceptionRule = ExpectedException.none();
 
     @Mock
-    private ProductRepositoryImpl productRepository;
+    private ProductRepository productRepository;
 
     @InjectMocks
     private ProductServiceImpl productService;
@@ -113,7 +112,7 @@ public class ProductServiceImplTest {
 
         //given
         Product product = createProduct();
-        Mockito.when(productRepository.updateDB(any(Product.class))).thenReturn(product);
+        Mockito.when(productRepository.update(any(Product.class))).thenReturn(product);
 
         //when
         Product updatedProduct = productService.updateProduct(product);
@@ -153,7 +152,7 @@ public class ProductServiceImplTest {
 
         //given
         Product product = createProduct();
-        Mockito.when(productRepository.removeFromDB(any(Product.class))).thenReturn(anyLong());
+        Mockito.when(productRepository.delete(any(Product.class))).thenReturn(anyLong());
 
         //when
         Long removedProduct = productService.removeProduct(product);

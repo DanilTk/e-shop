@@ -2,8 +2,9 @@ package eshop.service;
 
 import eshop.model.Product;
 import eshop.model.enums.ProductCategory;
-import eshop.repository.ProductRepository;
+import eshop.repository.delete;
 import eshop.service.exceptions.ProductException;
+import eshop.service.validation.ProductValidator;
 
 import java.util.Comparator;
 import java.util.List;
@@ -15,10 +16,10 @@ import static java.util.stream.Collectors.toList;
 
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductRepository productRepository;
+    private final delete delete;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductServiceImpl(delete delete) {
+        this.delete = delete;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
         if (ProductValidator.validateProductPriceAmount(product)) {
             throw new ProductException("Product has price 0 or negative");
         }
-        return productRepository.add(product);
+        return delete.add(product);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
         if (ProductValidator.validateProductPriceAmount(product)) {
             throw new ProductException("Product has price 0 or negative");
         }
-        return productRepository.updateDB(product);
+        return delete.update(product);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
         if (product == null) {
             throw new ProductException("Cannot remove null product");
         }
-        return productRepository.removeFromDB(product);
+        return delete.delete(product);
     }
 
     @Override
