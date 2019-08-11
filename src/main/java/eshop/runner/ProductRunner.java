@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class ProductRunner {
 
     public static void main(String[] args) throws SQLException {
-        Product product = new Product("product_1", BigDecimal.valueOf(5.99), MeasureName.PIECE, ProductCategory.ELECTRONICS);
+        Product product = new Product("h", BigDecimal.valueOf(5), MeasureName.PIECE, ProductCategory.ELECTRONICS);
 
         ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
         productRepository.add(product);
