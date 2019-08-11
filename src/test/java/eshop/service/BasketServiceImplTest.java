@@ -42,7 +42,7 @@ public class BasketServiceImplTest {
 
             for (int j = 0; j < productSetsPerBasket; j++) {
                 Product apple = new Product("Apple", BigDecimal.valueOf(1), MeasureName.KILOGRAM, ProductCategory.COFFEE);
-                Product banana = new Product("Banana", BigDecimal.valueOf(10), MeasureName.GRAMM, ProductCategory.ELECTRONICS);
+                Product banana = new Product("Banana", BigDecimal.valueOf(10), MeasureName.GRAM, ProductCategory.ELECTRONICS);
                 Product orange = new Product("Orange", BigDecimal.valueOf(100), MeasureName.PIECE, ProductCategory.TEA);
 
                 basketService.addProduct(apple);

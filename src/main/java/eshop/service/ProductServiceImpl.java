@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
         if (ProductValidator.validateProductPriceAmount(product)) {
             throw new ProductException("Product has price 0 or negative");
         }
-        return productRepository.addToDB(product);
+        return productRepository.add(product);
     }
 
     @Override

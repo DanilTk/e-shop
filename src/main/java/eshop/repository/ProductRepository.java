@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductRepository {
 
-    Product addToDB(Product product);
+    Product add(Product product);
 
     Product updateDB(Product product);
 

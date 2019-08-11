@@ -77,7 +77,7 @@ public class ProductServiceImplTest {
 
         //given
         Product product = createProduct();
-        Mockito.when(productRepository.addToDB(any(Product.class))).thenReturn(product);
+        Mockito.when(productRepository.add(any(Product.class))).thenReturn(product);
 
         //when
         Product addedProduct = productService.addProduct(product);
@@ -175,7 +175,7 @@ public class ProductServiceImplTest {
 
         //given
         List<Product> products = createProductList(5, BigDecimal.valueOf(100), 10d, MeasureName.PIECE, ProductCategory.ELECTRONICS);
-        products.addAll(createProductList(8, BigDecimal.valueOf(300), 50d, MeasureName.GRAMM, ProductCategory.TEA));
+        products.addAll(createProductList(8, BigDecimal.valueOf(300), 50d, MeasureName.GRAM, ProductCategory.TEA));
         Integer topNumberOfProducts = 7;
         ProductCategory productCategory = ProductCategory.TEA;
 
@@ -192,7 +192,7 @@ public class ProductServiceImplTest {
 
         //given
         List<Product> products = createProductList(4, BigDecimal.valueOf(100), 10d, MeasureName.PIECE, ProductCategory.ELECTRONICS);
-        products.addAll(createProductList(8, BigDecimal.valueOf(30), 50d, MeasureName.GRAMM, ProductCategory.TEA));
+        products.addAll(createProductList(8, BigDecimal.valueOf(30), 50d, MeasureName.GRAM, ProductCategory.TEA));
         Predicate<Product> pricePredicate = productPricePredicate(BigDecimal.valueOf(90));
 
         //when
@@ -208,7 +208,7 @@ public class ProductServiceImplTest {
 
         //given
         List<Product> products = createProductList(4, BigDecimal.valueOf(100), 10d, MeasureName.PIECE, ProductCategory.ELECTRONICS);
-        products.addAll(createProductList(8, BigDecimal.valueOf(30), 50d, MeasureName.GRAMM, ProductCategory.TEA));
+        products.addAll(createProductList(8, BigDecimal.valueOf(30), 50d, MeasureName.GRAM, ProductCategory.TEA));
         Predicate<Product> categoryPredicate = productCategoryPredicate(ProductCategory.ELECTRONICS);
 
         //when
@@ -224,7 +224,7 @@ public class ProductServiceImplTest {
 
         //given
         List<Product> products = createProductList(4, BigDecimal.valueOf(100), 10d, MeasureName.PIECE, ProductCategory.ELECTRONICS);
-        products.addAll(createProductList(8, BigDecimal.valueOf(30), 50d, MeasureName.GRAMM, ProductCategory.TEA));
+        products.addAll(createProductList(8, BigDecimal.valueOf(30), 50d, MeasureName.GRAM, ProductCategory.TEA));
 
         //when
         Map<ProductCategory, List<Product>> groupedProducts = productService.groupByProductCategory(products);
