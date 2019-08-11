@@ -40,7 +40,7 @@ public class ProductRepository implements Repository<Product> {
             Statement statement = connection.createStatement();
             String addProductSQL = buildAddQuery(name, price, measureName, productCategory);
 
-            //    String addProductSQL = "INSERT INTO product(name) VALUES('" + name + "')";
+//                String addProductSQL = "INSERT INTO product(name) VALUES('" + name + "')";
             statement.executeUpdate(addProductSQL);
         } catch (SQLException e) {
             //TODO add logger
